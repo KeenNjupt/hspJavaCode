@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Vector;
 
 public class ObjectInputStreamTest {
     /**
@@ -38,5 +39,17 @@ public class ObjectInputStreamTest {
         // 3.关闭
         objectInputStream.close();
 
+    }
+    @Test
+    void testVector() throws IOException, ClassNotFoundException {
+        String filePath = "E:\\vectorObject.dat";
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath));
+        int num = objectInputStream.readInt();
+        System.out.println(num);
+        Object o = objectInputStream.readObject();
+        Vector<Dog> dogs = (Vector<Dog>)(o);
+        for(Dog d : dogs){
+            System.out.println(d);
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.keen.objectinputoutputstream;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.Vector;
 
 
 public class ObjectOutputStreamTest {
@@ -30,6 +31,16 @@ public class ObjectOutputStreamTest {
         //保存一个 dog 对象
         objectOutputStream.writeObject(new Dog("旺财", 10));
         objectOutputStream.close();
+    }
+    @Test
+    void testVector() throws IOException {
+        String filePath = "E:\\vectorObject.dat";
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
+        Vector<Dog> dogs = new Vector<>();
+        dogs.add(new Dog("tom", 10));
+        dogs.add(new Dog("merry", 5));
+        objectOutputStream.writeInt(10);
+        objectOutputStream.writeObject(dogs);
     }
 }
 
