@@ -3,6 +3,7 @@ package com.keen.tank3;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Scanner;
 
 /**
  * 整体思路：
@@ -39,7 +40,10 @@ public class TankV4 extends JFrame {
         TankV4 tankGameV3 = new TankV4();
     }
     public TankV4(){
-        mp = new MyPanel();
+        System.out.println("输入数字选择模式:\n0:开始新游戏\n1:继续上局游戏\n");
+        Scanner scanner = new Scanner(System.in);
+        int mode = scanner.nextInt();
+        mp = new MyPanel(mode);
         new Thread(mp).start();
         this.add(mp);
         this.addKeyListener(mp);

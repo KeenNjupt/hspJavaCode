@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.Vector;
 
 /**
@@ -13,16 +14,38 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
     HeroTank heroTank = null;
     Vector<EnemyTank> enemyTank = new Vector<>();
     int enemySize = 3;
-    MyPanel(){
+    MyPanel(int mode){
         heroTank = new HeroTank(100,100, 1, 0, 5);//初始化自己的坦克
 //        enemyTank = new Tank(400, 400, 1, 1); //敌方坦克
         enemyTank = new Vector<EnemyTank>();
-        for( int i = 0; i < enemySize; ++i){
-            EnemyTank tank = new EnemyTank(200 * (i + 1), 0, 2, 1, 2);
-            new Thread(tank).start();
-            tank.shortBullet();//敌方坦克发射子弹
-            enemyTank.add(tank);
+        switch (mode){
+            case 0:
+                for( int i = 0; i < enemySize; ++i){
+                    EnemyTank tank = new EnemyTank(200 * (i + 1), 0, 2, 1, 2);
+                    new Thread(tank).start();
+                    tank.shortBullet();//敌方坦克发射子弹
+                    enemyTank.add(tank);
+                }
+                break;
+            case 1:
+                try {
+                    RecordContent recordContent = Record.getEnemyTankInfoFromFile();
+                    Vector<TankBaseInfo> tankBaseInfoVector = recordContent.getTankBaseInfoVector();
+                    for(TankBaseInfo i : tankBaseInfoVector){
+                        EnemyTank tank = new EnemyTank(i.getX(), i.getY(), i.getDirection(), 1, 2);
+                        new Thread(tank).start();
+                        tank.shortBullet();//敌方坦克发射子弹
+                        enemyTank.add(tank);
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            default:
+                System.out.println("输入错误");
+                break;
         }
+
         SysGlobalUtil.register(heroTank, enemyTank);
 
     }
