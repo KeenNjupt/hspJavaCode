@@ -17,6 +17,8 @@ public class ObjectOutputStreamTest {
      *
      * ObjectOutputStream为处理流，可以进行对象的序列化
      */
+
+    private static int num = 5;
     @Test
     void test() throws IOException {
         //序列化后， 保存的文件格式， 不是存文本， 而是按照特殊的格式来保存
@@ -34,13 +36,14 @@ public class ObjectOutputStreamTest {
     }
     @Test
     void testVector() throws IOException {
-        String filePath = "E:\\vectorObject.dat";
+        String filePath = "E:\\vectorObject.txt";
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
         Vector<Dog> dogs = new Vector<>();
         dogs.add(new Dog("tom", 10));
         dogs.add(new Dog("merry", 5));
-        objectOutputStream.writeInt(10);
+        objectOutputStream.writeInt(num);
         objectOutputStream.writeObject(dogs);
+        objectOutputStream.close();
     }
 }
 

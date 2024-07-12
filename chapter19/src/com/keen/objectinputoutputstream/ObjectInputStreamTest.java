@@ -42,7 +42,7 @@ public class ObjectInputStreamTest {
     }
     @Test
     void testVector() throws IOException, ClassNotFoundException {
-        String filePath = "E:\\vectorObject.dat";
+        String filePath = "E:\\vectorObject.txt";
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath));
         int num = objectInputStream.readInt();
         System.out.println(num);
@@ -51,5 +51,6 @@ public class ObjectInputStreamTest {
         for(Dog d : dogs){
             System.out.println(d);
         }
+        objectInputStream.close();
     }
 }
