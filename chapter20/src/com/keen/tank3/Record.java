@@ -6,7 +6,7 @@ import java.util.Vector;
 public class Record {
     private static int destroyEnemyTankNum = 0;
     private static BufferedWriter bufferedWriter = null;
-    private static String recordFilePath = "E:\\recordDestroyEnemyNumAndEnemyVector.txt";
+    private static String recordFilePath = "src\\recordDestroyEnemyNumAndEnemyVector.txt";
 
     public static void writeNumToFile(){
         Vector<EnemyTank> enemyTank = SysGlobalUtil.getEnemyTank();
@@ -25,6 +25,10 @@ public class Record {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+    }
+    public static Boolean recordFileIsExist(){
+        File file = new File(recordFilePath);
+        return file.exists();
     }
     public static RecordContent getEnemyTankInfoFromFile() throws IOException, ClassNotFoundException {
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(recordFilePath));

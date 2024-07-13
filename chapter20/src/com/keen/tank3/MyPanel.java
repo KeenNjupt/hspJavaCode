@@ -18,6 +18,10 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         heroTank = new HeroTank(100,100, 1, 0, 5);//初始化自己的坦克
 //        enemyTank = new Tank(400, 400, 1, 1); //敌方坦克
         enemyTank = new Vector<EnemyTank>();
+        if(!(Record.recordFileIsExist())) {
+            System.out.println("记录文件不存在只能开启新游戏");
+            mode = 0;
+        }
         switch (mode){
             case 0:
                 for( int i = 0; i < enemySize; ++i){
@@ -47,7 +51,7 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         }
 
         SysGlobalUtil.register(heroTank, enemyTank);
-
+        new AePlayWave("src\\111.wav").start();
     }
     public void showInfo(Graphics g){
         Color oldColor = g.getColor();
