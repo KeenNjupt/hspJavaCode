@@ -1,7 +1,5 @@
 package com.keen.junitTest;
 
-import java.awt.*;
-import java.net.URL;
 import java.util.Vector;
 
 public class Test {
