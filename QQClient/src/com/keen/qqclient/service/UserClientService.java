@@ -11,6 +11,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * 用户相关的服务：登录
+ */
 public class UserClientService {
 
     private User user = new User();
@@ -44,5 +47,35 @@ public class UserClientService {
             throw new RuntimeException(e);
         }
         return res;
+    }
+    public void onlineUserList(){
+        Message message = new Message();
+        message.setMesType(MessageType.MESSAGE_GET_ONLINE_FRIEND);
+        message.setSender(user.getUserId());
+        //获取该用户对应的线程对象
+        ClientConnectServerThread clientConnectServerThread = ManageClientConnectServerThread.getClientConnectServerThread(user.getUserId());
+        //获取线程对象持有的socket对象
+        Socket socket = clientConnectServerThread.getSocket();
+        try {
+            //发送message对象
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.writeObject(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    //客户端退出时，向服务器端发送消息，发送该客户端的uid,并结束进程
+    public void logout(){
+        Message message = new Message();
+        message.setMesType(MessageType.MESSAGE_CLIENT_EXIT);
+        message.setSender(user.getUserId());
+        try {
+            ClientConnectServerThread clientConnectServerThread = ManageClientConnectServerThread.getClientConnectServerThread(user.getUserId());
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientConnectServerThread.getSocket().getOutputStream());
+            objectOutputStream.writeObject(message);
+            System.exit(0);//结束进程，会关闭该进程中的所有线程
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

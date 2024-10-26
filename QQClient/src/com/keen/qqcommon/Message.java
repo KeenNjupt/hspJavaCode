@@ -10,6 +10,14 @@ public class Message implements Serializable {
     private String sendTime;
     private String mesType;//消息类型，可以在接口中定义消息类型
 
+    private byte[] fileBytes; //文件数组
+    private int fileLen = 0; //文件数组大小
+    private String dst; //目标文件路径
+    private String src; //源文件路径
+    public Message(){
+
+    }
+
     public Message(String sender, String getter, String content,
                    String sendTime, String mesType) {
         this.sender = sender;
@@ -57,5 +65,37 @@ public class Message implements Serializable {
 
     public void setMesType(String mesType) {
         this.mesType = mesType;
+    }
+
+    public byte[] getFileBytes() {
+        return fileBytes;
+    }
+
+    public void setFileBytes(byte[] fileBytes) {
+        this.fileBytes = fileBytes;
+    }
+
+    public int getFileLen() {
+        return fileLen;
+    }
+
+    public void setFileLen(int fileLen) {
+        this.fileLen = fileLen;
+    }
+
+    public String getDst() {
+        return dst;
+    }
+
+    public void setDst(String dst) {
+        this.dst = dst;
+    }
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
     }
 }
