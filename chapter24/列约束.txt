@@ -1,0 +1,19 @@
+not null 表示字段值不能为null
+unique 表示字段值必须唯一，不能重复
+
+create table test_unique
+   (
+    id int unique
+    ,val varchar(32)
+    );
+
+insert into test_unique values(1, 'some');
+insert into test_unique values(1, 'other'); --会插入失败
+
+1. 如果没有指定not null，只指定了unique，则该字段可以有多个空值
+insert into test_unique values(null, 'null1');
+insert into test_unique values(null, 'null2');
+
+如果一个列设置了 not null 和 unique，则效果类似于primary key
+
+2. 一个表可以有多个unique字段

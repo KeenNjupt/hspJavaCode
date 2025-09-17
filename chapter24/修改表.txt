@@ -1,0 +1,25 @@
+添加列：
+alter table table_name
+add column datatype [expression] after another column;
+在指定列后添加一列
+如：alter table emp add image varchar(32) not null default '' after resume;
+只在resume列后添加image列，并且该列不为空，默认值为''
+修改列:
+alter table table_name
+modify column datatype;
+如：alter table emp modify job varchar(60);
+将job列的类型修改为varchar(60)
+修改列名
+alter table table_name
+change column_name new_column_name new_data_type;
+如: alter table emp change name user_name varchar(32);
+删除列：
+alter table table_name
+drop column;
+如: alter table emp drop sex;
+
+修改表名
+rename table old_name to new_name
+如：rename table emp to employee;
+修改表字符集
+alter table table_name character set 字符集

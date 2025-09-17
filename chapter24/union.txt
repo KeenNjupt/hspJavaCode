@@ -1,0 +1,12 @@
+select ename, sal, job  from emp where sal>2500 --5
+select ename, sal, job  from emp where job = 'MANAGER' --3
+
+---union all 将两个查询合并，不会去重，下述得到8条
+select ename, sal, job  from emp where sal>2500
+UNION ALL
+select ename, sal, job  from emp where job = 'MANAGER'
+
+--union 会将两个查询合并，并去重, 下述得到6条
+select ename, sal, job  from emp where sal>2500
+UNION
+select ename, sal, job  from emp where job = 'MANAGER'

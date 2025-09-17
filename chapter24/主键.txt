@@ -1,0 +1,24 @@
+创建表时用primary key表示该列设为主键
+
+create table t
+(
+    id int primary key
+    ,`name` varchar(32)
+    ,email varchar(32)
+);
+id 为主键
+1.主键值唯一且值不可以为空
+2.一张表只能有一个主键，但可以由多列组成组合主键
+create table t
+(
+    id int
+    ,`name` varchar(32)
+    ,email varchar(32)
+    primary key(id, `name`)
+);
+
+id和name的组合为主键，即(id,name)组合值唯一，且不为空
+
+3. 主键的指定有两种方式
+3.1 直接在字段名后面指定 id int primary key
+3.2 在表定义最后指定: primary key(id, `name`)

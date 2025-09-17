@@ -1,0 +1,16 @@
+同时匹配多个字段值
+(字段1， 字段2) = (值1， 值2)
+
+select * from emp
+where (deptno, job) = (
+        select deptno, job from emp where ename = 'ALLEN'
+    )
+    AND ename != 'ALLEN';
+
+
+select * from emp
+where (job) = (
+        select job from emp where ename = 'SMITH'
+    )
+    AND ename != 'SMITH';
+

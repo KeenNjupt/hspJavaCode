@@ -1,0 +1,15 @@
+每个部门中超过部门平均工资的人
+select emp.ename, emp.sal, emp.deptno, avg_sal_deptno.avg_sal from emp ,
+(select avg(sal) as avg_sal, deptno as deptno from emp group by deptno) as avg_sal_deptno
+where emp.deptno = avg_sal_deptno.deptno and sal > avg_sal_deptno.avg_sal;
+
+每个部门工资最高的人
+
+select emp.ename, emp.sal, emp.deptno, temp.max_sal from emp ,
+(select max(sal) as max_sal, deptno as deptno from emp group by deptno) as temp
+where emp.deptno = temp.deptno and sal = temp.max_sal;
+
+查询每个部门的信息和人员数量
+select dept.deptno, dept.dname, dept.loc, temp.cnt from dept,
+(select count(1) as cnt, deptno from emp group by deptno ) as temp
+where dept.deptno = temp.deptno;
