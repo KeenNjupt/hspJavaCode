@@ -1,0 +1,5 @@
+delete from table_name [where exp]
+
+没有where条件时则删除整表数据
+
+使用drop table table_name f删除表本身

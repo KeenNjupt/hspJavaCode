@@ -1,0 +1,10 @@
+update table set filed_name = filed_value [where expression]
+如果没有where语句，会将全表数据中的字段值设置为指定值
+加了where语句，只会修改where条件为真的记录中的字段值
+
+也可以使用原有值进行修改，如对该字段值自增10
+update employee set salary = salary + 10;
+
+修改多个字段
+update table set filed_name1 = filed_value1, filed_name2 = filed_value2 [where expression]
+update employee set salary = salary + 90, job = 'senior developer';
