@@ -115,6 +115,7 @@ public class MethodRefTest {
 class Employee{
     String name;
     Integer id;
+    Integer age;
 
     public Employee(){
 
@@ -124,6 +125,11 @@ class Employee{
         this.name = name;
     }
 
+    public Employee(String name, Integer id, Integer age) {
+        this.name = name;
+        this.id = id;
+        this.age = age;
+    }
     public Employee(String name, Integer id) {
         this.name = name;
         this.id = id;
@@ -137,11 +143,28 @@ class Employee{
         this.name = name;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
+                ", age=" + age +
                 '}';
     }
 }
